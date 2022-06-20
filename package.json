@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "echo \"cd frontend && npm run serve\" \"cd Backend && npm run start\""
+    "start": "concurrently  \"cd Backend && npm run start\" \"cd frontend && npm run serve\" "
   },
   "author": "",
   "license": "ISC",

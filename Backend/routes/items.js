@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 const { ItemsModel } = require('../models/itemsModel.js')
 const { ItemListModel } = require('../models/itemListModel.js')
 
-router.get('/item/:name/:price', async(req, res)=>{
+router.get('/items/:name/:price', async(req, res)=>{
   let itemsFound = []
   let itemsUnderPrice = []
   const browser = await puppeteer.launch({ headless: true });
@@ -34,12 +34,12 @@ router.get('/item/:name/:price', async(req, res)=>{
     +req.params.price > +el.price ? itemsUnderPrice.push(el) : ''
   })
   console.log(itemsUnderPrice)
-  // await browser.close()
+  await browser.close()
   res.send('ok')
 })
 
 
-router.post('/addItem', async (req,res)=>{
+router.post('/items/addItem', async (req,res)=>{
   const itemToAdd = new ItemListModel({
     itemName: req.body.itemName,
     maxPrice: req.body.maxPrice,
@@ -51,7 +51,7 @@ router.post('/addItem', async (req,res)=>{
   })
 })
 
-router.get('/getItems', async (req,res)=>{
+router.get('/items/getItems', async (req,res)=>{
   const items = await ItemListModel.find({})
   if(items && items.length > 0){
     res.send(items)
@@ -59,9 +59,9 @@ router.get('/getItems', async (req,res)=>{
   
 })
 
-router.delete('/item/:item', (req,res)=> {
+router.delete('/item/:name', (req,res)=> {
 
-  ItemListModel.findOneAndDelete({itemName : req.params.item}, function (err, docs) {
+  ItemListModel.findOneAndDelete({itemName : req.params.name}, function (err, docs) {
     if (err){
         console.log(err)
     }
