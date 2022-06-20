@@ -1,0 +1,14 @@
+{
+  "name": "amazonwarehouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"cd frontend && npm run serve\" \"cd Backend && npm run start\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.2.2"
+  }
+}
