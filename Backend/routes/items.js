@@ -20,21 +20,26 @@ router.get('/items/:name/:price', async(req, res)=>{
       return span.innerHTML.split(',')[0]
     })
   })
-  console.log(b.length)
+  
   const c = await page.$$eval('span.a-size-medium.a-color-base.a-text-normal' , items => {
     return [...items].map(item => {
       return item.innerHTML
     })
   })
-  console.log(c.length)
+  
   for(let i = 0; i < c.length ; i++){
     itemsFound.push({ itemName : c[i] , price : b[i]})
   }
   itemsFound.map(el => {
     +req.params.price > +el.price ? itemsUnderPrice.push(el) : ''
   })
+<<<<<<< HEAD:Backend/routes/items.js
   console.log(itemsUnderPrice)
   await browser.close()
+=======
+  
+  // await browser.close()
+>>>>>>> aabc16be8c569719b3a290e961e414a354a7300c:Backend/routes/HomePage.js
   res.send('ok')
 })
 
