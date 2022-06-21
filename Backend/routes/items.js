@@ -33,13 +33,10 @@ router.get('/items/:name/:price', async(req, res)=>{
   itemsFound.map(el => {
     +req.params.price > +el.price ? itemsUnderPrice.push(el) : ''
   })
-<<<<<<< HEAD:Backend/routes/items.js
+
   console.log(itemsUnderPrice)
-  await browser.close()
-=======
-  
+  await browser.close() 
   // await browser.close()
->>>>>>> aabc16be8c569719b3a290e961e414a354a7300c:Backend/routes/HomePage.js
   res.send('ok')
 })
 
